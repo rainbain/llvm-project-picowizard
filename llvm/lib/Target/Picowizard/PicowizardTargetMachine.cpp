@@ -83,15 +83,19 @@ const PicowizardSubtarget *PicowizardTargetMachine::getSubtargetImpl(const Funct
 }
 
 
-TargetPassConfig *createPassConfig(PassManagerBase &PM) {
+TargetPassConfig *PicowizardTargetMachine::createPassConfig(PassManagerBase &PM) {
     // meow
     return NULL; // I am null meow
 }
 
 MachineFunctionInfo *
-createMachineFunctionInfo(BumpPtrAllocator &Allocator, const Function &F,
-                          const TargetSubtargetInfo *STI) {
+PicowizardTargetMachine::createMachineFunctionInfo(BumpPtrAllocator &Allocator, const Function &F,
+                          const TargetSubtargetInfo *STI) const {
     return NULL; // I am null meow
+}
+
+void PicowizardTargetMachine::registerPassBuilderCallbacks(PassBuilder &PB) {
+
 }
 
 // Called by LLVMs internals to register and initialize the target
