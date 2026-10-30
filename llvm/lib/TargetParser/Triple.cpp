@@ -97,6 +97,8 @@ StringRef Triple::getArchTypeName(ArchType Kind) {
     return "nvptx64";
   case nvptx:
     return "nvptx";
+  case picowizard:
+    return "picowizard";
   case ppc64:
     return "powerpc64";
   case ppc64le:
@@ -276,6 +278,9 @@ StringRef Triple::getArchTypePrefix(ArchType Kind) {
 
   case avr:
     return "avr";
+
+  case picowizard:
+    return "picowizard";
 
   case ppc64:
   case ppc64le:
@@ -473,6 +478,7 @@ Triple::ArchType Triple::getArchTypeForLLVMName(StringRef Name) {
       .Case("mips64", mips64)
       .Case("mips64el", mips64el)
       .Case("msp430", msp430)
+      .Case("picowizard", picowizard)
       .Case("ppc64", ppc64)
       .Case("ppc32", ppc)
       .Case("ppc", ppc)
@@ -604,6 +610,7 @@ Triple::ArchType Triple::parseArch(StringRef ArchName) {
           .Cases({"powerpcle", "ppcle", "ppc32le"}, Triple::ppcle)
           .Cases({"powerpc64", "ppu", "ppc64"}, Triple::ppc64)
           .Cases({"powerpc64le", "ppc64le"}, Triple::ppc64le)
+          .Case("picowizard", Triple::picowizard)
           .Case("xscale", Triple::arm)
           .Case("xscaleeb", Triple::armeb)
           .Case("aarch64", Triple::aarch64)
@@ -988,6 +995,7 @@ static Triple::ObjectFormatType getDefaultFormat(const Triple &T) {
   case Triple::msp430:
   case Triple::nvptx64:
   case Triple::nvptx:
+  case Triple::picowizard:
   case Triple::ppc64le:
   case Triple::ppcle:
   case Triple::r600:
@@ -1739,6 +1747,7 @@ unsigned Triple::getArchPointerBitWidth(llvm::Triple::ArchType Arch) {
 
   case llvm::Triple::avr:
   case llvm::Triple::msp430:
+  case llvm::Triple::picowizard:
     return 16;
 
   case llvm::Triple::aarch64_32:
@@ -1844,6 +1853,7 @@ Triple Triple::get32BitArchVariant() const {
   case Triple::UnknownArch:
   case Triple::amdgpu:
   case Triple::avr:
+  case Triple::picowizard:
   case Triple::bpfeb:
   case Triple::bpfel:
   case Triple::msp430:
@@ -1958,6 +1968,7 @@ Triple Triple::get64BitArchVariant() const {
   case Triple::UnknownArch:
   case Triple::arc:
   case Triple::avr:
+  case Triple::picowizard:
   case Triple::csky:
   case Triple::dxil:
   case Triple::hexagon:
@@ -2111,6 +2122,7 @@ Triple Triple::getBigEndianArchVariant() const {
   case Triple::ve:
   case Triple::csky:
   case Triple::xtensa:
+  case Triple::picowizard:
 
   // ARM is intentionally unsupported here, changing the architecture would
   // drop any arch suffixes.
@@ -2233,6 +2245,7 @@ bool Triple::isLittleEndian() const {
   case Triple::msp430:
   case Triple::nvptx64:
   case Triple::nvptx:
+  case Triple::picowizard:
   case Triple::ppcle:
   case Triple::ppc64le:
   case Triple::r600:
