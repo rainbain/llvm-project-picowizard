@@ -94,10 +94,6 @@ PicowizardTargetMachine::createMachineFunctionInfo(BumpPtrAllocator &Allocator, 
     return NULL; // I am null meow
 }
 
-void PicowizardTargetMachine::registerPassBuilderCallbacks(PassBuilder &PB) {
-
-}
-
 // Called by LLVMs internals to register and initialize the target
 extern "C" LLVM_ABI LLVM_EXTERNAL_VISIBILITY void LLVMInitializePicowizardTarget() {
   // Register the target.
