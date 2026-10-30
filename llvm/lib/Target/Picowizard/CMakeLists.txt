@@ -22,21 +22,15 @@ add_llvm_target(PicowizardCodeGen
 #  DEPENDS
 #  intrinsics_gen
 
-#  LINK_COMPONENTS
-#  Analysis
-#  AVRDesc
-#  AVRInfo
-#  AsmPrinter
-#  CodeGen
-#  CodeGenTypes
-#  Core
-#  MC
-#  Passes
-#  SelectionDAG
-#  Support
-#  Target
-#  TargetParser
-#  TransformUtils
+  LINK_COMPONENTS
+  CodeGen
+  Core
+  MC
+  PicowizardDesc
+  PicowizardInfo
+  Support
+  Target
+  TargetParser
 
   ADD_TO_COMPONENT
   Picowizard
