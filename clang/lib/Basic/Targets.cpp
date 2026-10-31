@@ -40,6 +40,7 @@
 #include "Targets/X86.h"
 #include "Targets/XCore.h"
 #include "Targets/Xtensa.h"
+#include "Targets/Picowizard.h"
 #include "clang/Basic/Diagnostic.h"
 #include "clang/Basic/DiagnosticFrontend.h"
 #include "llvm/ADT/StringExtras.h"
@@ -458,6 +459,10 @@ std::unique_ptr<TargetInfo> AllocateTarget(const llvm::Triple &Triple,
     default:
       return std::make_unique<RISCV32TargetInfo>(Triple, Opts);
     }
+
+  case llvm::Triple::picowizard:
+    return std::make_unique<PicowizardTargetInfo>(Triple,
+                                                  Opts);
 
   case llvm::Triple::riscv64:
     switch (os) {
